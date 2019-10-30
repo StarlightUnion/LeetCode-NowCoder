@@ -15,8 +15,8 @@
  */
 var twoSum = function(nums, target) {
     if(nums.length) {
-      for(var i = 0; i <= nums.length; i++) {
-        for(var j = i + 1; j <= nums.length; j++) {
+      for(var i = 0; i < nums.length; i++) {
+        for(var j = i + 1; j < nums.length; j++) {
           if(nums[i] + nums[j] === target) {
             return [i, j];
           }
@@ -27,3 +27,20 @@ var twoSum = function(nums, target) {
 
 var nums = [2, 7, 11, 15];
 console.log(twoSum(nums, 9));// [0, 1]
+
+// time: 72ms memory: 34.9MB O(n)
+var twoSum = function(nums, target) {
+  if(nums.length) {
+    let map = new Map();
+    for(let i = 0; i < nums.length; i++) {
+      let flag = map.get(target - nums[i]);
+      if(flag != undefined && flag != i) {
+        return [flag, i];
+      }
+      map.set(nums[i], i);
+    }
+  }
+}
+
+var nums = [3, 7, 8, 15];
+console.log(twoSum(nums, 11));// [0, 2]
