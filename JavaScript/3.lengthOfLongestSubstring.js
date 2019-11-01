@@ -28,7 +28,7 @@ var lengthOfLongestSubstring = function(s) {
     return len;
 };
 
-let str = "";
+let str = "abcabcbb";// 3
 console.log(lengthOfLongestSubstring(str));
 
 // 题解中的 滑动窗口
