@@ -15,7 +15,7 @@ function ListNode(val) {
     this.next = null;
 }
 
-// time: 140ms memory: 38.2MB O()
+// time: 140ms memory: 38.2MB
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
