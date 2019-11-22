@@ -1,4 +1,5 @@
 // Created by wxc on 2019/11/21
+// Updated on 2019/11/22
 
 // 请你来实现一个 atoi 函数，使其能将字符串转换成整数。
 // 首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
@@ -38,7 +39,10 @@
  * @return {number}
  */
 var myAtoi = function(str) {
-    
+    let _str = str.trim();
+    let num = parseInt(str.match(/^[+|-]?\d+/));
+
+    return num;
 };
 
 console.log(myAtoi("4193 with words"));
