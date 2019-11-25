@@ -1,5 +1,5 @@
 // Created by wxc on 2019/11/21
-// Updated on 2019/11/22
+// Updated on 2019/11/25
 
 // 请你来实现一个 atoi 函数，使其能将字符串转换成整数。
 // 首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
@@ -9,7 +9,7 @@
 // 在任何情况下，若函数不能进行有效的转换时，请返回 0。
 
 // 说明：
-// 假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。
+// 假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−2^31,  2^31 − 1]。如果数值超过这个范围，请返回  INT_MAX (2^31 − 1) 或 INT_MIN (−2^31) 。
 
 // 示例 1:
 // 输入: "42"
@@ -32,15 +32,24 @@
 // 输入: "-91283472332"
 // 输出: -2147483648
 // 解释: 数字 "-91283472332" 超过 32 位有符号整数范围。
-//      因此返回 INT_MIN (−231) 。
+//      因此返回 INT_MIN (−2^31) 。
 
+// time: 96ms memory: 35.8MB O(1)
 /**
  * @param {string} str
  * @return {number}
  */
 var myAtoi = function(str) {
     let _str = str.trim();
-    let num = parseInt(str.match(/^[+|-]?\d+/));
+    let num = parseInt(_str.match(/^[+|-]?\d+/));
+
+    if (!num) return 0;
+
+    if (num < Math.pow(-2, 31)) {
+        num = Math.pow(-2, 31);
+    } else if (num > Math.pow(2, 31) - 1) {
+        num = Math.pow(2, 31) - 1;
+    }
 
     return num;
 };
