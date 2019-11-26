@@ -1,4 +1,5 @@
 // Created by wxc on 2019/11/25
+// Updated on 2019/11/26
 
 // 给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
 // '.' 匹配任意单个字符
@@ -39,13 +40,20 @@
 // p = "mis*is*p*."
 // 输出: false
 
+// ? LeetCode@Zhouao
+// time: 80ms memory: 35.3MB O(1)
 /**
  * @param {string} s
  * @param {string} p
  * @return {boolean}
  */
 var isMatch = function(s, p) {
-    
+    return new RegExp(['^', ...p, '$'].join('')).test(s);
 };
 
-console.log(isMatch())
+//
+var isMatch = function(s, p) {
+    
+}
+
+console.log(isMatch('aab', 'c*a*b'))
