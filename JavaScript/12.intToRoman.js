@@ -1,4 +1,5 @@
 // Created by wxc on 2019/11/26
+// Updated on 2019/11/27
 
 // 罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。
 // 字符          数值
@@ -34,12 +35,59 @@
 // 输出: "MCMXCIV"
 // 解释: M = 1000, CM = 900, XC = 90, IV = 4.
 
+// 暴力查表
+// time: 168ms(65.62%) memory: 41.7MB(36.29%) O(1)
 /**
  * @param {number} num
  * @return {string}
  */
 var intToRoman = function(num) {
-    
+    const s = {'1': 'I', '5': 'V', '10': 'X', '50': 'L', '100': 'C', '500': 'D', '1000': 'M'};// 罗马数字
+    let res = '';// 结果
+    let n = 1;// 当前倍数
+
+    while(num > 0) {
+        const m = num % 10;// 余数
+        const f = 5 * n;
+        let temp = '';
+
+        if (m < 4) {
+            temp = s[n].repeat(m);
+        } else if (m === 4) {
+            temp = '' + s[n] + s[f];
+        } else if (5 < m && m < 9) {
+            temp = '' + s[f] + s[n].repeat(m - 5);
+        } else if (m === 9) {
+            temp = '' + s[n] + s[n * 10];
+        } else {
+            temp = '' + s[f];
+        }
+
+        res = temp + res;
+        n *= 10;
+        num = parseInt(num / 10);
+    }
+
+    return res;
 };
+
+// 贪心法 LeetCode@liweiwei1419
+// time: 164ms(73.26%) memory: 40MB(84.07%) O(1)
+var intToRoman = function(num) {
+    let nums = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    let romans = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+
+    let index = 0;
+    let res = '';
+
+    while(index < 13) {
+        while(num >= nums[index]) {
+            res += romans[index];
+            num -= nums[index];
+        }
+        index += 1;
+    }
+    return res;
+}
 
 console.log(intToRoman(1994));
