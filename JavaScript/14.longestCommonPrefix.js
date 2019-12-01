@@ -1,5 +1,5 @@
 // Created by wxc on 2019/11/27
-// Updated on 2019/11/29
+// Updated on 2019/12/01
 
 // 编写一个函数来查找字符串数组中的最长公共前缀。
 // 如果不存在公共前缀，返回空字符串 ""。
@@ -30,7 +30,7 @@ var longestCommonPrefix = function(strs) {
         while(flag) {
             matchStr = strs[0].substr(0, num);
 
-            for (let i = 0; i < strs.length; i++) {
+            for (let i = 1; i < strs.length; i++) {
                 flag = strs[i].startsWith(matchStr);
             }
             num++;
@@ -40,8 +40,24 @@ var longestCommonPrefix = function(strs) {
     return matchStr.substr(0, matchStr.length - 1);
 };
 
+// time: 76ms(51.53%) memory: 34.7MB(62.09%) 时间复杂度：O(s) s为所有字符串长度之和 空间复杂度：O(n^2)
 var longestCommonPrefix = function(strs) {
+    if(strs.length === 0) return "";
+    let res = strs[0];
 
+    for(let i = 1; i < strs.length; i++) {
+        let index = 0;
+
+        for(let j = 0; j < res.length && j < strs[i].length; j++) {
+            if(res[j] != strs[i][j]) break;
+            index += 1;
+        }
+
+        res = res.substr(0, index);
+        if(res === "") return res;
+    }
+
+    return res;
 }
 
 console.log(longestCommonPrefix(['flower', 'flow', 'flight']));
