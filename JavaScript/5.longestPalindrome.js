@@ -68,11 +68,10 @@ var longestPalindrome = function(s) {
     return res.length > _res.length ? res : _res;
 };
 
-// 动态规划
+// 动态规划 LeetCode@DeepWang
+// 图解：https://leetcode-cn.com/problems/longest-palindromic-substring/solution/hua-jie-suan-fa-5-zui-chang-hui-wen-zi-chuan-by-de/
 var longestPalindrome = function(s) {
-    if (s === "") {
-        return "";
-    }
+    if (s === "") return "";
     let cell = [], maxLen = 0, maxEnd = 0;
     for (let i = 0; i < s.length; i++) {
         cell.push([]);
@@ -99,4 +98,4 @@ var longestPalindrome = function(s) {
     return s.slice(maxEnd + 1 - maxLen, maxEnd + 1)
 }
 
-console.log(longestPalindrome("babad"));
+console.log(longestPalindrome("abac"));
