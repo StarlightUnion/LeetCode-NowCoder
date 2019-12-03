@@ -36,27 +36,25 @@ var longestCommonPrefix = function(strs) {
             num++;
         }
     }
-
     return matchStr.substr(0, matchStr.length - 1);
 };
 
 // time: 76ms(51.53%) memory: 34.7MB(62.09%) 时间复杂度：O(s) s为所有字符串长度之和 空间复杂度：O(n^2)
 var longestCommonPrefix = function(strs) {
-    if(strs.length === 0) return "";
+    if (strs.length === 0) return "";
     let res = strs[0];
 
-    for(let i = 1; i < strs.length; i++) {
+    for (let i = 1; i < strs.length; i++) {
         let index = 0;
 
-        for(let j = 0; j < res.length && j < strs[i].length; j++) {
-            if(res[j] != strs[i][j]) break;
+        for (let j = 0; j < res.length && j < strs[i].length; j++) {
+            if (res[j] != strs[i][j]) break;
             index += 1;
         }
 
         res = res.substr(0, index);
-        if(res === "") return res;
+        if (res === "") return res;
     }
-
     return res;
 }
 
