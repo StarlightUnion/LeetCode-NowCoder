@@ -11,7 +11,7 @@
 //   "()()()"
 // ]
 
-// LeetCode@秦时明月
+// 递归 LeetCode@秦时明月
 // time: 68ms(70.72%) memory: 35.1MB(38.58%)
 /**
  * @param {number} n
@@ -31,7 +31,7 @@ var generateParenthesis = function(n) {
     return res;
 };
 
-// LeetCode@秦时明月
+// 动态规划 LeetCode@秦时明月
 // time: 72ms(53.76%) memory: 34.7MB(71.07%)
 var generateParenthesis = function(n) {
     let ress = [[""]];
