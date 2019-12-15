@@ -51,7 +51,7 @@ var swapPairs = function(head) {
     return res.next;
 };
 
-// 自递归 一 LeetCode@Nodreame
+// 递归 一 LeetCode@Nodreame
 // time: 60ms(94.8%) memory: 33.6MB(63.6%)
 // https://leetcode-cn.com/problems/swap-nodes-in-pairs/solution/jsliang-chong-jie-fa-die-dai-zi-di-gui-by-nodreame/
 var swapPairs = function (head) {
@@ -62,7 +62,7 @@ var swapPairs = function (head) {
     return next;
 };
 
-// 自递归 二 LeetCode@Nodreame
+// 递归 二 LeetCode@Nodreame
 var swapPairs = function(head) {
     if (!head || !head.next) return head;
     let [fst, snd] = [head, head.next];
