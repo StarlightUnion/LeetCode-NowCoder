@@ -26,18 +26,28 @@
 //     print(nums[i]);
 // }
 
+// 一 循环 LeetCode@rhinoc
+// time: 100ms(49.77%) memory: 37.9MB(9.78%)
+// https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/solution/javascript-shan-xiuchu-gaipai-xu-shu-zu-zhong-de-z/
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-    let i = 0;
-    while(i < nums.length) {
-        nums = nums.filter(item => {
-            return item !== nums[i];
-        })
+    let temp = nums[0];
+    for (let i = 1; i < nums.length;) {
+        nums[i] === temp ? nums.splice(i, 1) : temp = nums[i++];
     }
     return nums.length;
+};
+
+// 二 只修改前几个值 LeetCode@rhinoc
+// time: 76ms(94.83%) memory: 37.4MB(26.96%)
+var removeDuplicates = function(nums) {
+    let len = 1;
+    for (let i = 1; i < nums.length; i++)
+        if (nums[i] !== nums[i - 1]) nums[len++] = nums[i];
+    return len;
 };
 
 console.log(removeDuplicates([1, 1, 2]))
