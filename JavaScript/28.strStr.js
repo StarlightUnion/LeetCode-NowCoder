@@ -1,4 +1,5 @@
 // Created by wxc on 2019/12/25
+// Updated on 2019/12/26
 
 // 实现 strStr() 函数。
 // 给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
@@ -27,17 +28,23 @@ var strStr = function(haystack, needle) {
     return haystack.indexOf(needle);
 };
 
-// 2.
-// time:
+// 2.暴力循环 LeetCode@rhinoc
+// time: 4244ms(5.14%) memory: 35.6MB(13.62%)
 var strStr = function(haystack, needle) {
-    if (haystack === "") return 0;
-    for (let i = 0; i <= haystack.length; i++) {
+    if (needle === "") return 0;
+    for (let i = 0; i < haystack.length; i++) {
         if (haystack[i] === needle[0]) {
-            for (let j = 1; j <= needle.length; j++) {
-                
+            let flag = true;
+            for (let j = 1; j < needle.length; j++) {
+                if (haystack[i + j] !== needle[j]) {
+                    flag = false;
+                    break;
+                }
             }
+            if (flag) return i;
         }
     }
+    return -1;
 };
 
 console.log(strStr("hello", "ll"));
