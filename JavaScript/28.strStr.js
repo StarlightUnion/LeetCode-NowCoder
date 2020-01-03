@@ -31,6 +31,7 @@ var strStr = function(haystack, needle) {
 // 2.暴力循环 LeetCode@rhinoc
 // time: 4244ms(5.14%) memory: 35.6MB(13.62%)
 var strStr = function(haystack, needle) {
+    // 1#
     if (needle === "") return 0;
     for (let i = 0; i < haystack.length; i++) {
         if (haystack[i] === needle[0]) {
@@ -45,6 +46,15 @@ var strStr = function(haystack, needle) {
         }
     }
     return -1;
+
+    // #2
+    // if (needle === "") return 0;
+    // for (var i = 0; i < haystack.length; i++) {
+    //     if (haystack[i] === needle[0]) {
+    //         if (haystack.substring(i, i + needle.length) === needle) return i;
+    //     }
+    // }
+    // return -1;
 };
 
 console.log(strStr("hello", "ll"));
