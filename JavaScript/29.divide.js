@@ -1,4 +1,5 @@
 // Created by wxc on 2020/01/03
+// Updated on 2020/01/08
 
 // 给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。
 // 返回被除数 dividend 除以除数 divisor 得到的商。
@@ -17,6 +18,8 @@
 // 假设我们的环境只能存储 32 位有符号整数，其数值范围是 [−231,  231 − 1]。本题中，如果除法结果溢出，则返回 231 − 1。
 
 
+// 1. ？ 看不懂... LeetCode@johnh
+// https://leetcode-cn.com/problems/divide-two-integers/solution/shi-yong-wei-yi-cao-zuo-qiu-jie-by-johnh/
 /**
  * @param {number} dividend
  * @param {number} divisor
@@ -78,6 +81,44 @@ function divided_negtive(dividend, divisor) {
         }
     }
     return [timesMin].concat(divided_negtive(dividend - (divisor << timesMin), divisor));
+}
+
+
+// 2.chitanda-eru
+// https://leetcode-cn.com/problems/divide-two-integers/solution/chu-shu-bei-zeng-by-chitanda-eru/
+/**
+ * @param {number} dividend
+ * @param {number} divisor
+ * @return {number}
+ */
+var divide = function(dividend, divisor, count = 1) {
+    const absDividend = Math.abs(dividend);
+    const absDivisor = Math.abs(divisor);
+    const isMinus = (dividend === absDividend ? 1 : -1) ^ (divisor === absDivisor ? 1 : -1);
+    let res = divideDichotomy(absDividend, absDivisor, 0);
+
+    if (isMinus) res = -res;
+    if (res > 2147483647) return 2147483647;
+    if (res < -2147483648) return -2147483648;
+    return res;
+};
+
+/**
+ * @param {number} absDividend 被除数(非负数)
+ * @param {number} originAbsDivisor 最初的除数(非负数)
+ * @param {number} res 上一个部分得到的结果
+ */
+function divideDichotomy(absDividend, originAbsDivisor, res) {
+    if (absDividend < originAbsDivisor) return res;
+    let count = 1;
+    let absDivisor = originAbsDivisor;
+    while (absDividend >= absDivisor) {
+        const nextAbsDivisor = absDivisor + absDivisor;
+        if (absDividend === nextAbsDivisor) return count + count + res;
+        if (absDividend < nextAbsDivisor) return divideDichotomy(absDividend - absDivisor, originAbsDivisor, res + count);
+        absDivisor = nextAbsDivisor;
+        count += count;
+    }
 }
 
 console.log(divide(10, 3));
