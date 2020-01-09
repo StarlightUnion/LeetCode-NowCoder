@@ -20,14 +20,52 @@
 //   words = ["word","good","best","word"]
 // 输出：[]
 
-
+// 尝试第一弹 会错题意，以为是两两串联。。。
 /**
  * @param {string} s
  * @param {string[]} words
  * @return {number[]}
  */
+// var findSubstring = function(s, words) {
+//     let len = words.length,
+//         matrix = [],
+//         res = [];
+
+//     // 创建矩阵
+//     for (let i = 0; i < len; i++) {
+//         matrix.push(new Array(len).fill(1));
+//     }
+
+//     // 遍历数组
+//     for (let i = 0; i < matrix.length; i++) {
+//         for (let j = 0; j < matrix[i].length; j++) {
+//             if (i === j) {
+//                 matrix[i][j] = 0;
+//             } else {
+//                 let flag = true,
+//                     idx = 0;// 开始检索的位置
+
+//                 while(flag) {
+//                     let index = s.indexOf(words[i] + words[j], idx);
+
+//                     if (index >= 0) {
+//                         res.push(index);
+//                         idx = idx + index + (words[i] + words[j]).length;
+//                         flag = true;
+//                     } else {
+//                         flag = false;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     return res;
+// };
+
+
+// 尝试第二弹
 var findSubstring = function(s, words) {
     
 };
 
-console.log(findSubstring("wordgoodgoodgoodbestword", ["word","good","best","word"]));
+console.log(findSubstring("wordgoodgoodgoodbestword", ["word","good","best","word"]));// [0, 9]
