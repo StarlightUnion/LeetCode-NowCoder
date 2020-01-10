@@ -20,6 +20,7 @@
 //   words = ["word","good","best","word"]
 // 输出：[]
 
+
 // 尝试第一弹 会错题意，以为是两两串联。。。
 /**
  * @param {string} s
@@ -65,7 +66,10 @@
 
 // 尝试第二弹
 var findSubstring = function(s, words) {
-    
+    let len = words.length,
+        res = [];
+
+    return res;
 };
 
 console.log(findSubstring("wordgoodgoodgoodbestword", ["word","good","best","word"]));// [0, 9]
