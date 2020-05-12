@@ -21,13 +21,38 @@
 // n 是 32 位有符号整数，其数值范围是 [−2^31, 2^31 − 1] 。
 
 
+// 递归
+// time: 72ms(51.58%) memory: 33.8MB(96.30%)
 /**
  * @param {number} x
  * @param {number} n
  * @return {number}
  */
 var myPow = function(x, n) {
-  
+  if (n === 0) return 1;
+  if (n < 0) return 1 / myPow(x, -n);
+  if (n % 2) return x * myPow(x, n - 1);
+  return myPow(x * x, n / 2);
 };
+
+
+// 迭代
+// time: 76ms(33.75%) memory: 33.9MB(92.59%)
+var myPow = function(x, n) {
+    if (n === 0) return 1;
+    if (n < 0) {
+      x = 1 / x;
+      n = -n;
+    }
+
+    let res = 1;
+    while(n) {
+      if (n % 2) res *= x;
+      x *= x;
+      n = parseInt(n / 2);
+    }
+
+    return res;
+  };
 
 console.log(myPow(2.00000, -2));

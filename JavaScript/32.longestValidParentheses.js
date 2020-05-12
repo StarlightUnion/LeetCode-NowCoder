@@ -19,7 +19,7 @@
  * @return {number}
  */
 var longestValidParentheses = function(s) {
-  // 
+  //
 };
 
 console.log(longestValidParentheses(")()())s"))
