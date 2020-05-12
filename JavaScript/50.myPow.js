@@ -22,7 +22,7 @@
 
 
 // 递归
-// time: 72ms(51.58%) memory: 33.8MB(96.30%)
+// time: 72ms(51.58%) cache: 33.8MB(96.30%)
 /**
  * @param {number} x
  * @param {number} n
@@ -37,7 +37,7 @@ var myPow = function(x, n) {
 
 
 // 迭代
-// time: 76ms(33.75%) memory: 33.9MB(92.59%)
+// time: 76ms(33.75%) cache: 33.9MB(92.59%)
 var myPow = function(x, n) {
     if (n === 0) return 1;
     if (n < 0) {
