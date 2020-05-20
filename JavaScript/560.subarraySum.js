@@ -32,3 +32,25 @@ var subarraySum = function(nums, k) {
 
   return n;
 };
+
+
+// LeetCode@hyj8
+// https://leetcode-cn.com/problems/subarray-sum-equals-k/solution/dai-ni-da-tong-qian-zhui-he-cong-zui-ben-fang-fa-y/
+var subarraySum = (nums, k) => {
+  if (nums.length === 0) return 0
+  let map = { 0: 1 }
+  let prefixSum = 0
+  let count = 0
+  for (let i = 0; i < nums.length; i++) {
+    prefixSum += nums[i]
+    if (map[prefixSum - k]) {
+      count += map[prefixSum - k];
+    }
+    if (map[prefixSum]) {
+      map[prefixSum]++
+    } else {
+      map[prefixSum] = 1
+    }
+  }
+  return count
+}
