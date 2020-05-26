@@ -12,10 +12,33 @@
 // 输出: 0
 // 解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。
 
+
+// 暴力破解
+// time: 264ms(5.47%) cache: 35.3MB(66.67%)
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var maxProduct = function(nums) {
+  let n;
 
+  for (let i = 0; i < nums.length; i++) {
+    let _n = nums[i];
+    if (n !== undefined) {
+      n = _n > n ? _n : n;
+    } else {
+      n = _n;
+    }
+
+    for (let j = i + 1; j < nums.length; j++) {
+      _n *= nums[j];
+      n = _n > n ? _n : n;
+    }
+  }
+
+  return n;
 };
+
+// console.log(maxProduct([2, 3, -2, 4]));
+console.log(maxProduct([-2, 0, -1]));
+// console.log(maxProduct([-2]));
