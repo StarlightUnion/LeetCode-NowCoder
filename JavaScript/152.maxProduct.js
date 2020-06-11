@@ -14,31 +14,47 @@
 
 
 // 暴力破解
-// time: 264ms(5.47%) cache: 35.3MB(66.67%)
+// time: 264ms(5.47%) cache: 35.3MB(66.67%) 时间复杂度O(n^2)
 /**
  * @param {number[]} nums
  * @return {number}
  */
+// var maxProduct = function(nums) {
+//   let n;
+
+//   for (let i = 0; i < nums.length; i++) {
+//     let _n = nums[i];
+//     if (n !== undefined) {
+//       n = _n > n ? _n : n;
+//     } else {
+//       n = _n;
+//     }
+
+//     for (let j = i + 1; j < nums.length; j++) {
+//       _n *= nums[j];
+//       n = _n > n ? _n : n;
+//     }
+//   }
+
+//   return n;
+// };
+
+// 动态规划 LeetCode@hyj8
+// https://leetcode-cn.com/problems/maximum-product-subarray/solution/wa-ni-zhe-ti-jie-shi-xie-gei-bu-hui-dai-ma-de-nu-p/
+// time: 88ms(27.47%) cache: 36.1MB(66.67%) 时间复杂度O(n)
 var maxProduct = function(nums) {
-  let n;
-
-  for (let i = 0; i < nums.length; i++) {
-    let _n = nums[i];
-    if (n !== undefined) {
-      n = _n > n ? _n : n;
-    } else {
-      n = _n;
-    }
-
-    for (let j = i + 1; j < nums.length; j++) {
-      _n *= nums[j];
-      n = _n > n ? _n : n;
-    }
+  let res = nums[0], prevMin = nums[0], prevMax = nums[0]
+  let temp1 = 0, temp2 = 0
+  for (let i = 1; i < nums.length; i++) {
+    temp1 = prevMin * nums[i]
+    temp2 = prevMax * nums[i]
+    prevMin = Math.min(temp1, temp2, nums[i])
+    prevMax = Math.max(temp1, temp2, nums[i])
+    res = Math.max(prevMax, res)
   }
-
-  return n;
+  return res
 };
 
-// console.log(maxProduct([2, 3, -2, 4]));
+console.log(maxProduct([2, 3, -2, 4]));
 console.log(maxProduct([-2, 0, -1]));
 // console.log(maxProduct([-2]));
