@@ -23,6 +23,8 @@
 // s 只包含小写英文字母。
 
 
+// LeetCode@LeetCode-Solution
+// https://leetcode-cn.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/solution/mei-ge-yuan-yin-bao-han-ou-shu-ci-de-zui-chang-z-2/
 /**
  * @param {string} s
  * @return {number}
@@ -31,4 +33,5 @@ var findTheLongestSubstring = function(s) {
 
 };
 
+console.log(findTheLongestSubstring("eleetminicoworoep"));
 console.log(findTheLongestSubstring("bcbcbc"));

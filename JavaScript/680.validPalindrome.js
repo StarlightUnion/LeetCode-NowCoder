@@ -18,45 +18,40 @@
 // 链接：https://leetcode-cn.com/problems/valid-palindrome-ii
 
 
-//
+// 暴力破解
+// time: 204ms(9.22%) cache: 56.9MB(100%)
 /**
  * @param {string} s
  * @return {boolean}
  */
-var validPalindrome = function(s, left, right) {
-  let _left, _right;
+var validPalindrome = function(s) {
+  for (let left = 0, right = s.length - 1; left < right; left++, right--) {
+    if (s[left] !== s[right]) {
+      let arr = s.slice(left, right).split("");
+      let _arr = s.slice(left + 1, right + 1).split("");
 
-  if (left && right) {
-    _left = left;
-    _right = right;
-  } else {
-    _left = 0;
-    _right = s.length - 1;
-  }
-
-  if (_left >= _right) return true;
-
-  while(_left < _right) {
-    if (s[_left] !== s[_right]) {// 不相等
-      return validPalindrome(s, _left + 1, _right) || validPalindrome(s, _left, _right - 1);
+      return arr.join("") === arr.reverse().join("")
+        || _arr.join("") === _arr.reverse().join("");
     }
-
-    _left++;
-    _right--;
   }
 
-  return false;
+  return true;
 }
+
 
 // LeetCode@jsyt
 // https://leetcode-cn.com/problems/valid-palindrome-ii/solution/js-4-xing-dai-ma-jian-dan-yi-dong-by-jsyt/
-// var validPalindrome = function(s, flag = true) {
-//   let l = 0, r = s.length - 1;
-//   while (l < r && s[l] === s[r]) l++, r--;
-//   if (r <= l) return true;
-//   if (flag == true) return validPalindrome(s.slice(l, r), false) || validPalindrome(s.slice(l + 1, r + 1), false)
-//   return false;
-// };
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var validPalindrome = function(s, flag = true) {
+  let l = 0, r = s.length - 1;
+  while (l < r && s[l] === s[r]) l++, r--;
+  if (r <= l) return true;
+  if (flag == true) return validPalindrome(s.slice(l, r), false) || validPalindrome(s.slice(l + 1, r + 1), false)
+  return false;
+};
 
 console.log(validPalindrome("abca"));
 console.log(validPalindrome("abcba"));
