@@ -14,9 +14,6 @@
 // 注意:
 // 字符串只包含从 a-z 的小写字母。字符串的最大长度是50000。
 
-// 来源：力扣（LeetCode）
-// 链接：https://leetcode-cn.com/problems/valid-palindrome-ii
-
 
 // 暴力破解
 // time: 204ms(9.22%) cache: 56.9MB(100%)
