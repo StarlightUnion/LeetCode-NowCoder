@@ -23,7 +23,8 @@
 // cache.get(4);       // 返回  4
 
 
-
+// LeetCode@hyj8
+// https://leetcode-cn.com/problems/lru-cache/solution/bu-yong-yu-yan-nei-jian-de-map-gua-dang-feng-zhuan/
 /**
  * @param {number} capacity
  */
