@@ -19,22 +19,21 @@ function TreeNode(val) {
   this.left = this.right = null;
 }
 
+// 递归
+// time: 92ms(27.14%) cache: 41.1MB(8.33%)
 /**
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root, depth = 1) {
+var maxDepth = function(root) {
+  if (!root) return 0;
   let leftDepth = 0, rightDepth = 0;
 
-  if (root.left) {
-    leftDepth = maxDepth(root.left, depth++) + depth;
-  }
 
-  if (root.right) {
-    rightDepth = maxDepth(root.left, depth++) + depth;
-  }
+  leftDepth = maxDepth(root.left);
+  rightDepth = maxDepth(root.right);
 
-  return Math.max(leftDepth, rightDepth);
+  return Math.max(leftDepth, rightDepth) + 1;
 };
 
 const root = new TreeNode(3);
@@ -44,3 +43,7 @@ root.right.left = new TreeNode(15);
 root.right.right = new TreeNode(7);
 
 console.log(maxDepth(root));
+
+
+// LeetCode@hyj8 https://leetcode-cn.com/u/hyj8/
+// https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/liang-chong-jie-fa-di-gui-dfs-bfs-by-hyj8/
