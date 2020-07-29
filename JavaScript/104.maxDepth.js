@@ -25,15 +25,34 @@ function TreeNode(val) {
  * @param {TreeNode} root
  * @return {number}
  */
-var maxDepth = function(root) {
-  if (!root) return 0;
-  let leftDepth = 0, rightDepth = 0;
+// var maxDepth = function(root) {
+//   if (!root) return 0;
+//   let leftDepth = 0, rightDepth = 0;
+
+//   leftDepth = maxDepth(root.left);
+//   rightDepth = maxDepth(root.right);
+
+//   return Math.max(leftDepth, rightDepth) + 1;
+// };
 
 
-  leftDepth = maxDepth(root.left);
-  rightDepth = maxDepth(root.right);
-
-  return Math.max(leftDepth, rightDepth) + 1;
+// LeetCode@hyj8 https://leetcode-cn.com/u/hyj8/
+// https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/liang-chong-jie-fa-di-gui-dfs-bfs-by-hyj8/
+var maxDepth = (root) => {
+  if (root == null) return 0;
+  const queue = [root];
+  let depth = 1;
+  while (queue.length) {
+    const levelNum = queue.length;          // 当前层的节点个数
+    for (let i = 0; i < levelNum; i++) {    // 逐个让当前层的节点出列
+      const cur = queue.shift();            // 当前出列的节点
+      if (cur.left) queue.push(cur.left);
+      if (cur.right) queue.push(cur.right); // 左右子节点入列
+    }
+    // 当前层所有节点出列，如果有下一层节点，则队列非空
+    if (queue.length) depth++;
+  }
+  return depth;
 };
 
 const root = new TreeNode(3);
@@ -43,7 +62,3 @@ root.right.left = new TreeNode(15);
 root.right.right = new TreeNode(7);
 
 console.log(maxDepth(root));
-
-
-// LeetCode@hyj8 https://leetcode-cn.com/u/hyj8/
-// https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/liang-chong-jie-fa-di-gui-dfs-bfs-by-hyj8/
